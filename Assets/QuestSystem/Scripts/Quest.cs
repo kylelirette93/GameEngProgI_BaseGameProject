@@ -13,6 +13,7 @@ public class Quest
     public int condition;
     public int reward;
     public bool isCompleted;
+    public bool isRecieved = false;
 
     // Constructor for quest. Pass values when initializing a new quest.
     public Quest(string title, string description, int condition, int reward)

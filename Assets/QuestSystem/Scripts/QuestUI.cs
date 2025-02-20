@@ -20,7 +20,10 @@ public class QuestUI : MonoBehaviour
         questListText.text = "Active Quests:\n";
         foreach (Quest quest in questManager.GetActiveQuests())
         {
-            questListText.text += "- " + quest.title + ": " + quest.description + "\n" + "Collected: " + quest.collected;
+            if (quest.isRecieved)
+            {
+                questListText.text += "- " + quest.title + ": " + quest.description + "\n" + "Collected: " + quest.collected;
+            }
         }
     }
 

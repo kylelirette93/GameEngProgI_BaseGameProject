@@ -6,12 +6,12 @@ public class QuestManager : MonoBehaviour
 {
     // List of quest objects.
     public List<Quest> quests = new List<Quest>();
+    public QuestUI QuestUI { get { return questUI; } }
     QuestUI questUI;
     void Start()
     {
         questUI = FindObjectOfType<QuestUI>();
         // Initialized a quest to test system.
-        quests.Add(new Quest("Flower Picker", "Pick 5 blue flowers to recieve a reward!", 5, 5));
     }
 
     public void CompleteQuest(string title)
@@ -22,6 +22,7 @@ public class QuestManager : MonoBehaviour
         {
             quest.CompleteQuest();
             // Temporarily display the quest is completed, for feedback.
+            if (questUI != null)
             StartCoroutine(questUI.DisplayCompletion());
         }
     }

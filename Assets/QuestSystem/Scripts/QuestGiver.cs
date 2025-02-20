@@ -11,6 +11,14 @@ public class QuestGiver : MonoBehaviour
         {
             QuestManager questManager = FindObjectOfType<QuestManager>();
             questManager.CompleteQuest(questTitle);
+            foreach (var quest in questManager.quests)
+            {
+                if (!quest.isRecieved)
+                {
+                    // Player has recieved quest.
+                    quest.isRecieved = true;
+                }
+            }
         }
     }
 }

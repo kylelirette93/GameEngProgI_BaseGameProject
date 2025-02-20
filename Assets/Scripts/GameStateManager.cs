@@ -8,13 +8,17 @@ public class GameStateManager : MonoBehaviour
 
     public enum GameState
     {
-        MainMenu_State,   // The game is at the main menu
+        MainMenu_State, // The game is at the main menu
+        Options_State, // The game is at options menu
+        Quest_State,     // The game is at the quest menu
         Gameplay_State,   // The game is actively being played
         Paused_State      // The game is paused
     }
 
     // Property to store the current game state
     public GameState currentState { get; private set; }
+
+    public GameState previousState { get; private set; }
 
     private void Start()
     {
@@ -27,6 +31,7 @@ public class GameStateManager : MonoBehaviour
     {
         // Exit the previous state before entering the new state
         ExitState(currentState);
+        previousState = currentState;
         currentState = newState;
         EnterState(currentState);
     }
@@ -44,18 +49,38 @@ public class GameStateManager : MonoBehaviour
                 ChangeState(GameState.Gameplay_State);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (currentState == GameState.Gameplay_State)
+            {
+                ChangeState(GameState.Quest_State);
+            }
+            else if (currentState == GameState.Quest_State)
+            {
+                ChangeState(GameState.Gameplay_State);
+            }
+        }
     }
 
     // Handles any specific actions that need to occur when switching to a new state
     private void ExitState(GameState state)
     {
+        previousState = state;
         switch (state)
         {
             case GameState.MainMenu_State:
                 GameManager.Instance.UIManager.DisableAllMenuUI();
                 Debug.Log("Exited MainMenu State");
                 break;
-
+            case GameState.Options_State:
+                GameManager.Instance.UIManager.DisableAllMenuUI();
+                Debug.Log("Exited Options State");
+                break;
+            case GameState.Quest_State:
+                GameManager.Instance.UIManager.DisableAllMenuUI();
+                Debug.Log("Exited Quest State");
+                break;
             case GameState.Gameplay_State:
                 GameManager.Instance.UIManager.DisableAllMenuUI();
                 Debug.Log("Exited Gameplay State");
@@ -78,7 +103,16 @@ public class GameStateManager : MonoBehaviour
                 Time.timeScale = 0;  // Stop gameplay when entering Main Menu
                 Debug.Log("Entered MainMenu State");
                 break;
-
+            case GameState.Options_State:
+                EnableCursor();
+                GameManager.Instance.UIManager.EnableOptionsUI();
+                Time.timeScale = 0;
+                break;
+            case GameState.Quest_State:
+                EnableCursor();
+                GameManager.Instance.UIManager.EnableQuestUI();
+                Time.timeScale = 0;
+                break;
             case GameState.Gameplay_State:
                 DisableCursor();
                 GameManager.Instance.UIManager.EnableGameplayMenuUI();
@@ -100,6 +134,11 @@ public class GameStateManager : MonoBehaviour
         ChangeState(GameState.Gameplay_State);
         GameManager.Instance.levelManager.LoadScene("Scene01");
     }
+
+    public void Back()
+    {
+        ChangeState(previousState);
+    }
     public void Resume()
     {
         ChangeState(GameState.Gameplay_State);
@@ -107,6 +146,16 @@ public class GameStateManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void DisplayQuest()
+    {
+        ChangeState(GameState.Quest_State);
+    }
+
+    public void Options()
+    {
+        ChangeState(GameState.Options_State);
     }
 
     public void Pause()
