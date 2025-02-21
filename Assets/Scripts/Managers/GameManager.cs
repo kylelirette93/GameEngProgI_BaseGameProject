@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    // Reference all managers for access and persist across scenes.
     public static GameManager Instance;
     public UIManager UIManager;
     public LevelManager levelManager;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        // Singleton pattern.
         if (Instance == null)
         {
             Instance = this;

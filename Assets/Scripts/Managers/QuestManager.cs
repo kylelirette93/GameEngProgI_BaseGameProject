@@ -20,14 +20,16 @@ public class QuestManager : MonoBehaviour
             if (QuestUI != null && quest.isCompleted)
             {
                 StartCoroutine(QuestUI.DisplayCompletion());
+                // Remove the completed quest.
                 quests.Remove(quest);
             }
             }
         }
 
-        public List<Quest> GetActiveQuests()
+    public List<Quest> GetActiveQuests()
     {
         // Search through and return all quests that are not completed.
         return quests.FindAll(q => !q.isCompleted);
     }
+
 }

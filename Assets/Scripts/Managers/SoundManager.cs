@@ -15,12 +15,14 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySoundByName(string name)
     {
+        // Play the sound based on the name.
         switch (name)
         {
             case "typewriter":
                 PlaySound(typewriterSFX);
                 break;
             case "gameplay":
+                // Prevent music from playing every time state is entered.
                 if (!IsMusicPlaying(gameplayMusic))
                 {
                     PlayMusic(gameplayMusic);

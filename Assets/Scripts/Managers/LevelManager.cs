@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    // Reference to the player and the spawn point
+    // Reference to the player and the spawn point.
     Transform player;
     string _spawnPoint;
 

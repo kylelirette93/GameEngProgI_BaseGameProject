@@ -4,9 +4,9 @@ public class QuestGiver : MonoBehaviour
 {
     public string questTitle;
 
+    // When triggered, have the player recieve the quest, also turn in if completed.
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Trigger zone to complete quest, used to turn in quest.
         if (other.CompareTag("Player"))
         {
             QuestManager questManager = FindObjectOfType<QuestManager>();
@@ -15,7 +15,6 @@ public class QuestGiver : MonoBehaviour
             {
                 if (!quest.isRecieved)
                 {
-                    // Player has recieved quest.
                     quest.isRecieved = true;
                     GameManager.Instance.questManager.QuestUI.UpdateQuestList();
                 }

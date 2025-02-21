@@ -4,6 +4,7 @@ using UnityEngine;
 
 // Expose fields in inspector.
 [System.Serializable]
+// Class to hold quest data.
 public class Quest
 {
     // Quest data.
@@ -14,8 +15,6 @@ public class Quest
     public int reward;
     public bool isCompleted;
     public bool isRecieved = false;
-
-    // Constructor for quest. Pass values when initializing a new quest.
     
 
     public void CompleteQuest()
@@ -24,7 +23,7 @@ public class Quest
         if (collected == condition)
         {
             isCompleted = true;
-            Debug.Log("Quest completed: " + title);
+            // Debug.Log("Quest completed: " + title);
         }
     }
 }

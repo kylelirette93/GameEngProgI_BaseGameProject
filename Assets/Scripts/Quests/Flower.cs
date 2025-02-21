@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Flower : MonoBehaviour
 {
+    // Quest object for Violet Essence.
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
