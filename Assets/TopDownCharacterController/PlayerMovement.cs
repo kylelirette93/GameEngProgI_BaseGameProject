@@ -57,6 +57,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void ResetVelocity()
+    {
+        rb2D.velocity = Vector2.zero;
+    }
+
     void UpdateAnimation()
     {
         bool isMoving = moveVector != Vector2.zero;
