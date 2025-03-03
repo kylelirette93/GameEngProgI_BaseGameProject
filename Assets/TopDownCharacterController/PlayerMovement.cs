@@ -17,9 +17,11 @@ public class PlayerMovement : MonoBehaviour
 
     // Movement speed of the player.
     [SerializeField] float moveSpeed = 2.0f;
+    [SerializeField] float runSpeed = 5.0f;
 
     // Reference to the animator component.
     Animator animator;
+    bool isRunning = false;
 
     private void Awake()
     {
@@ -28,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Subscribe to the move event.
         Actions.MoveEvent += GetInputVector;
+        Actions.RunEvent += Run;
     }
 
     private void FixedUpdate()
@@ -77,6 +80,20 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetFloat("MoveDirectionX", lastMoveVector.x);
             animator.SetFloat("MoveDirectionY", lastMoveVector.y);
+        }
+    }
+
+    void Run(bool isRunning)
+    {
+        if (isRunning)
+        {
+            moveSpeed = runSpeed;
+            animator.speed *= 1.5f;
+        }
+        else
+        {
+            moveSpeed = 5.0f;
+            animator.speed = 1f;
         }
     }
 }

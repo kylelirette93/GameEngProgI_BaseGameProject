@@ -492,6 +492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3569363698633105036, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
+      propertyPath: runSpeed
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3669372967302813403, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
       propertyPath: QuestUI
       value: 
@@ -800,6 +804,10 @@ PrefabInstance:
     - target: {fileID: 7538965282301226925, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 0.764151
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660113213372827109, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -15.550049
       objectReference: {fileID: 0}
     - target: {fileID: 7794369193691211040, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
       propertyPath: m_fontAsset

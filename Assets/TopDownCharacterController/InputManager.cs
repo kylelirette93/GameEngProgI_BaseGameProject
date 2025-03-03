@@ -41,12 +41,25 @@ public class InputManager : MonoBehaviour, GameInput.IPlayerActions
             Actions.CancelInteractEvent?.Invoke();
         }
     }
+
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Actions.RunEvent?.Invoke(true);
+        }
+        if (context.canceled)
+        {
+            Actions.RunEvent?.Invoke(false);
+        }
+    }
 }
 
 public static class Actions
 {
     // Define events for each action.
     public static Action<Vector2> MoveEvent;
+    public static Action <bool>RunEvent;
     public static Action StartInteractEvent;
     public static Action CancelInteractEvent;
 }
